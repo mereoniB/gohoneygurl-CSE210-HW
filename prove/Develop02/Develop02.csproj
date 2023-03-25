@@ -8,4 +8,69 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-</Project>
+</Project
+
+public abstract class JournalEntry {
+    public DateTime EntryDate { get; set; }
+    public string EntryTitle { get; set; }
+    public string EntryContent { get; set; }
+}
+
+public class LocalJournal : JournalEntry {
+    public string FilePath { get; set; }
+    public void SaveEntry() {
+        // Save journal entry to local file
+    }
+    public void DeleteEntry() {
+        // Delete journal entry from local file
+    }
+}
+
+public class CloudJournal : JournalEntry {
+    public string AccountName { get; set; }
+    public string AccountPassword { get; set; }
+    public void SaveEntry() {
+        // Save journal entry to cloud storage
+    }
+    public void DeleteEntry() {
+        // Delete journal entry from cloud storage
+    }
+}
+
+public class JournalSearch {
+    public static List<JournalEntry> SearchByDate(DateTime startDate, DateTime endDate) {
+        // Search for journal entries within specified date range
+    }
+    public static List<JournalEntry> SearchByKeyword(string keyword) {
+        // Search for journal entries containing specified keyword
+    }
+}
+
+public class JournalApp {
+    public static void Main() {
+        // Create a new local journal entry
+        LocalJournal localEntry = new LocalJournal();
+        localEntry.EntryDate = DateTime.Now;
+        localEntry.EntryTitle = "My First Entry";
+        localEntry.EntryContent = "This is my first journal entry!";
+        localEntry.FilePath = "C:/MyJournalEntries/MyFirstEntry.txt";
+        localEntry.SaveEntry();
+
+        // Create a new cloud journal entry
+        CloudJournal cloudEntry = new CloudJournal();
+        cloudEntry.EntryDate = DateTime.Now;
+        cloudEntry.EntryTitle = "My Second Entry";
+        cloudEntry.EntryContent = "This is my second journal entry!";
+        cloudEntry.AccountName = "MyCloudAccount";
+        cloudEntry.AccountPassword = "MyCloudPassword";
+        cloudEntry.SaveEntry();
+
+        // Search for journal entries by date
+        List<JournalEntry> entriesByDate = JournalSearch.SearchByDate(DateTime.Now.AddDays(-7), DateTime.Now);
+        
+        // Search for journal entries by keyword
+        List<JournalEntry> entriesByKeyword = JournalSearch.SearchByKeyword("journal");
+    }
+}
+
+>

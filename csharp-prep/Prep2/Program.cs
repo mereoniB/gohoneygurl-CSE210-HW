@@ -43,3 +43,65 @@ class Program
         }
     }
 }
+
+using System;
+
+// Define an abstract class for a shape
+public abstract class Shape
+{
+    public abstract double Area();
+    public abstract double Perimeter();
+}
+
+// Define a concrete class for a rectangle that inherits from Shape
+public class Rectangle : Shape
+{
+    private double length;
+    private double width;
+    
+    public Rectangle(double length, double width)
+    {
+        this.length = length;
+        this.width = width;
+    }
+    
+    public override double Area()
+    {
+        return length * width;
+    }
+    
+    public override double Perimeter()
+    {
+        return 2 * (length + width);
+    }
+}
+
+// Define a concrete class for a circle that inherits from Shape
+public class Circle : Shape
+{
+    private double radius;
+    
+    public Circle(double radius)
+    {
+        this.radius = radius;
+    }
+    
+    public override double Area()
+    {
+        return 3.14 * radius * radius;
+    }
+    
+    public override double Perimeter()
+    {
+        return 2 * 3.14 * radius;
+    }
+}
+
+// Create a rectangle and a circle, and print their area and perimeter
+Rectangle rectangle = new Rectangle(4, 5);
+Circle circle = new Circle(3);
+
+Console.WriteLine("Rectangle area: " + rectangle.Area());
+Console.WriteLine("Rectangle perimeter: " + rectangle.Perimeter());
+Console.WriteLine("Circle area: " + circle.Area());
+Console.WriteLine("Circle perimeter: " + circle.Perimeter());
